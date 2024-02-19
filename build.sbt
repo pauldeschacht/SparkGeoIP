@@ -1,9 +1,9 @@
 name := "SparkIpGeo"
-version := "0.2"
+version := "0.3"
 
 scalaVersion := "2.12.15"
-val sparkVersion = "3.1.1"
-val hadoopVersion = "3.1.0"  // this must be aligned with the %HADOOP_HOME%
+val sparkVersion = "3.3.0"
+val hadoopVersion = "3.3.4"  // this must be aligned with the %HADOOP_HOME%
 
 // https://github.com/s911415/apache-hadoop-3.1.0-winutils/tree/master/bin
 
@@ -44,8 +44,10 @@ lazy val global = project
       "org.apache.spark" %% "spark-sql" % sparkVersion % "it",
       "org.scalatest" %% "scalatest" % "3.1.0" % "test,it",
       "org.apache.hadoop" % "hadoop-common" % hadoopVersion % "it",
+      "org.apache.hadoop" % "hadoop-auth" % hadoopVersion % "it",
       "org.apache.hadoop" % "hadoop-hdfs" % hadoopVersion % "it",
       "org.apache.hadoop" % "hadoop-minicluster" % hadoopVersion % "it",
+      "org.mockito" % "mockito-core" % "2.28.2" % "it",
       "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.13.4" % "it",
     ),
     assemblyJarName := s"${name.value}_${scalaBinaryVersion.value}-${sparkVersion}_${version.value}.jar",

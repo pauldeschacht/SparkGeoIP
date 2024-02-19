@@ -15,16 +15,31 @@ This project creates the Spark UDF function which runs on **JDK 8**
 
 * `sbt compile` to compile the jar 
 * `sbt assembly` to create the assembly jar to distribute on the Spark cluster
-*  `build.sbt` defines :
-   * scala version is set to 2.12.15
-   * Spark version is set to 3.11
-*  In case you want to run the local integration test (local Hadoop and Spark), pay attention to the Hadoop cluster version. Hadoop is sensitive to versions of the different components.
 
-Current [requirements for Spark 3.1.1](https://spark.apache.org/docs/3.1.1/)
+## Version 0.2
+
+Scala version is set to 2.12.15
+Spark version is set to 3.1.1
+
+[Requirements for Spark 3.1.1](https://spark.apache.org/docs/3.1.1/)
 
 * Spark runs on Java 8/11, Scala 2.12,
 * For the Scala API, Spark 3.1.1 uses Scala 2.12. You will need to use a compatible Scala version (2.12.x).
 * spark-core has a transitive dependency on hadoop-common 3.2
+
+## Version 0.3 
+
+Scala version is set to 2.12.15
+Spark version is set to 3.3.0
+
+[Requirements for Spark 3.3.0](https://spark.apache.org/docs/3.3.0/)
+
+* Spark runs on Java 8/11/17, Scala 2.12/2.13, Python 3.7+ and R 3.5+. 
+* Java 8 prior to version 8u201 support is deprecated as of Spark 3.2.0. 
+* For the Scala API, Spark 3.3.0 uses Scala 2.12. You will need to use a compatible Scala version (2.12.x).
+
+
+*  In case you want to run the local integration test (local Hadoop and Spark), pay attention to the Hadoop cluster version. Hadoop is sensitive to versions of the different components.
 
 
 ## Test Environment 
@@ -33,7 +48,7 @@ Note: To run the integration test, JDK8 environment is needed.
 
 
 * `sbt test` to run the local test (no Spark involved)
-* `sbt IntegrationTest / testOnly` sets up a local Hadoop/Spark cluster (no docker)
+* `sbt IntegrationTest/testOnly` sets up a local Hadoop/Spark cluster (no docker)
 
 The integration test starts a local Hadoop / Spark node. The initialization of the `mini cluster` loads some sample data files `src/it/resources/ips` as parquet files and registers the (free downloaded MaxMind database)[https://dev.maxmind.com/geoip/geolite2-free-geolocation-data#accessing-geolite2-free-geolocation-data] to the Spark environment.
 
