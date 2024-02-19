@@ -70,8 +70,8 @@ class Ip2LocationTest
 
   test("Run ip2location on faulty ip") {
     IpCityLookupRegister.register(getSpark(), "ip2location", "GeoLite2-City.mmdb")
-    val rows: Array[Row] = getSpark().sql("""SELECT ip, ip2location(ip) as location FROM VALUES (NULL), ("111"), ("192.168.10.3"), ("92.151.171.200") AS DATA (ip) ORDER BY ip""").collect
-    assert(rows.length == 4)
+    val rows: Array[Row] = getSpark().sql("""SELECT ip, ip2location(ip) as location FROM VALUES (NULL), ("111"), ("192.168.10.3"), ("92.151.171.200"), ("92.173.173.67") AS DATA (ip) ORDER BY ip""").collect
+    assert(rows.length == 5)
     assert(rows(0).getString(0) == null)
     assert(rows(0).getAs[IpLocationShort](1) == null)
 
@@ -86,5 +86,13 @@ class Ip2LocationTest
     assert(rows(3).getAs[Row](1).getString(1) == "PAC")
     assert(rows(3).getAs[Row](1).getString(2) == "FR")
     assert(rows(3).getAs[Row](1).getString(3) == "EU")
+    assert(rows(3).getAs[Row](1).getString(4) == "83440")
+
+    assert(rows(4).getString(0) == "92.173.173.67")
+    assert(rows(4).getAs[Row](1).getString(0) == "La Seyne-sur-Mer")
+    assert(rows(4).getAs[Row](1).getString(1) == "PAC")
+    assert(rows(4).getAs[Row](1).getString(2) == "FR")
+    assert(rows(4).getAs[Row](1).getString(3) == "EU")
+    assert(rows(4).getAs[Row](1).getString(4) == "83500")
   }
 }

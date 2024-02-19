@@ -8,7 +8,7 @@ import java.io.File
 class IpCityLookupTest
   extends AnyFunSuite {
 
-  val expectedCity: Option[IpLocationShort] = Some(IpLocationShort(city = Some("Callian"), state = Some("PAC"), country = Some("FR"), continent = Some("EU")))
+  val expectedCity: Option[IpLocationShort] = Some(IpLocationShort(city = Some("Callian"), state = Some("PAC"), country = Some("FR"), continent = Some("EU"), postalCode = Some("83440")))
   test ("find ip addresses without cache") {
 
     val ipCityLookup = new IpCityLookup(new File("src/it/resources/GeoLite2-City.mmdb"), cacheSize = 0L)

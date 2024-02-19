@@ -1,5 +1,5 @@
-name := "com.c28n.SparkIpGeo"
-version := "0.1"
+name := "SparkIpGeo"
+version := "0.2"
 
 scalaVersion := "2.12.15"
 val sparkVersion = "3.1.1"
@@ -48,6 +48,7 @@ lazy val global = project
       "org.apache.hadoop" % "hadoop-minicluster" % hadoopVersion % "it",
       "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.13.4" % "it",
     ),
+    assemblyJarName := s"${name.value}_${scalaBinaryVersion.value}-${sparkVersion}_${version.value}.jar",
     assemblyPackageScala / assembleArtifact := false,
     assembly / assemblyMergeStrategy := {
       case PathList("META-INF", _*) => MergeStrategy.discard
